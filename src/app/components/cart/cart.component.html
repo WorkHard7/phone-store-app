@@ -14,3 +14,29 @@
     {{product.price | currency}}
   </span>
 </div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+    <div class="required" *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched">
+      Name is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="address">
+      Address
+    </label>
+    <input id="address" type="text" formControlName="address">
+    <div class="required" *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+      Address is required.
+    </div>
+  </div>
+
+  <button [disabled]="checkoutForm.invalid" class="button" type="submit">Purchase</button>
+  
+</form>
